@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bomberman Online - Salas</title>
+    <link rel="stylesheet" href="./Assets/web fonts/silkscreen_bold_macroman/stylesheet.css" type="text/css" charset="utf-8" />
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+</head>
+<body>
+    <h1>💣 Bomberman - Online</h1>
+    <div id="content">
+        <div id="game-board">
+            <canvas id="canvas" width="750" height="600"></canvas>
+            <div id="room-ui" style="display:none;"></div>
+            <div id="death-overlay" style="display:none;"></div>
+        </div>
+        <div id="menu-hint" style="color: #666; font-size: 14px; margin-top: 10px; font-family: 'Press Start 2P', monospace; text-align: center;">
+            [1] Criar Sala | [2] Entrar em Sala | [ESC] Sair da Sala
+        </div>
+        <footer>
+            <div id="player-info">
+                <p id="player-id" style="color: #60a5fa;">Player ID: </p>
+                <p id="player-count" style="color: #4ade80;">Players online: 0</p>
+                <p id="room-status" style="color: #fbbf24;">Sala: Nenhuma</p>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="./JS/firebase-config.js"></script>
+    <script src="./JS/audio.js"></script>
+    <script src="./JS/map.js"></script>
+    <script src="./JS/sprite.js"></script>
+    <script src="./JS/room-system.js"></script>
+    <script src="./JS/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "silkscreenbold";
+    background: url("./Assets/Sprites/super-bomberman-r-bg-black.png") no-repeat center;
+    background-color: black;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+html, body {
+    overflow: hidden;
+}
+
+canvas {
+    font-family: "silkscreenbold";
+    width: 65vw;
+}
+
+h1 {
+    color: white;
+    font-size: 4vh;
+    padding: 2vh;
+}
+
+h2 {
+    font-size: 2vh;
+    padding: 2vh;
+}
+
+p {
+    font-size: 1.5vh;
+    padding: 1vh;
+}
+
+footer {
+    padding: 1vh;
+    padding-bottom: 5vh;
+}
+
+.player {
+    padding: 0 12vw;
+}
+
+#instructions {
+    display: flex;
+    justify-content: center;
+}
+
+#player-info {
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#player-info p {
+    margin: 5px 0;
+}
+
+@media (min-width: 1400px) {
+    canvas {
+        width: 40vw;
+    }
+}
+
+@media (max-width: 1200px) {
+    canvas {
+        width: 60vw;
+    }
+}
+
+@media (max-width: 800px) {
+    h1 {
+        font-size: 9vw;
+    }
+    canvas {
+        width: 70vw;
+        padding-bottom: 3vh;
+    }
+    #instructions {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+/* ============ ESTILOS DA SALA ============ */
+
+#room-ui {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    font-family: 'Press Start 2P', monospace;
+}
+
+#room-ui .room-container {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    padding: 40px;
+    border-radius: 20px;
+    border: 3px solid #e94560;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+#room-ui .room-title {
+    color: #e94560;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#room-ui .room-code {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+#room-ui .room-code span {
+    color: #e94560;
+}
+
+#room-ui .round-info {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+#room-ui .player-list {
+    margin: 20px 0;
+}
+
+#room-ui .player-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    margin: 5px 0;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+#room-ui .player-item.local {
+    background: rgba(233, 69, 96, 0.2);
+    border-color: #e94560;
+}
+
+#room-ui .player-item.alive {
+    color: #4ade80;
+}
+
+#room-ui .player-item.dead {
+    color: #f87171;
+}
+
+#room-ui .player-item .player-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#room-ui .player-item .player-score {
+    color: #fff;
+    font-size: 12px;
+}
+
+#room-ui .status-box {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+#room-ui .status-waiting {
+    color: #60a5fa;
+}
+
+#room-ui .status-countdown {
+    color: #fbbf24;
+}
+
+#room-ui .status-playing {
+    color: #4ade80;
+}
+
+#room-ui .status-gameover {
+    color: #e94560;
+}
+
+#room-ui .btn-start {
+    margin-top: 15px;
+    padding: 12px 30px;
+    background: #4ade80;
+    color: #1a1a2e;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', monospace;
+    transition: all 0.3s;
+}
+
+#room-ui .btn-start:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.3);
+}
+
+#room-ui .btn-leave {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', monospace;
+    transition: all 0.3s;
+}
+
+#room-ui .btn-leave:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+#room-ui .waiting-queue {
+    margin: 10px 0;
+    color: #fbbf24;
+    font-size: 12px;
+}
+
+/* ============ OVERLAY DE MORTE ============ */
+
+#death-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1500;
+    font-family: 'Press Start 2P', monospace;
+    flex-direction: column;
+}
+
+#death-overlay h1 {
+    color: #ef4444;
+    font-size: 48px;
+    text-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}
+
+#death-overlay p {
+    color: #fbbf24;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+#death-overlay .waiting-text {
+    color: #fff;
+    font-size: 14px;
+    margin-top: 30px;
+    animation: pulse 1s infinite;
+}
+
+/* ============ MENU HINT ============ */
+
+#menu-hint {
+    color: #666;
+    font-size: 14px;
+    margin-top: 10px;
+    font-family: 'Press Start 2P', monospace;
+    text-align: center;
+}
+
+#room-status {
+    font-size: 14px;
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* ============ ANIMAÇÕES ============ */
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.countdown-number {
+    animation: pulse 1s infinite;
+}
+
+/* ============ RESPONSIVIDADE ============ */
+
+@media (max-width: 768px) {
+    #room-ui .room-container {
+        padding: 20px;
+        width: 95%;
+    }
+    
+    #room-ui .room-title {
+        font-size: 18px;
+    }
+    
+    #room-ui .player-item {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+    
+    #room-ui .btn-start {
+        font-size: 12px;
+        padding: 10px 20px;
+    }
+    
+    #death-overlay h1 {
+        font-size: 32px;
+    }
+    
+    #death-overlay p {
+        font-size: 16px;
+    }
+}
